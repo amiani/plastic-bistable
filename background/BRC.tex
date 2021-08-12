@@ -1,7 +1,6 @@
-
 \subsection*{Bistable Recurrent Cells}
 
-Bistable Recurrent Cells (BRCs) \cite{vecoven2021brc} are another recurrent model similar to the GRU that allows for each individual unit of the memory to hold onto memories for an arbitrarily long time. The BRC modifies the update and reset gate equations to
+ Bistable Recurrent Cells (BRCs) \cite{vecoven2021brc} are another recurrent model similar in form to the GRU that allow for each individual unit of the memory vector to hold onto a value for an arbitrarily long time. The BRC features only local interaction of the hidden state, that is, that each hidden state neuron computes its activation value based only on the activation values of the neurons connected to it in the previous layer, the synaptic strengths of those connections and the activation value of the neuron itself at the previous timestep. Models that feature such local computations are interesting subjects of study because biological neural networks cannot do the global computations typically required for the operation of modern artificial neural networks. The BRC therefore modifies the update and reset gate equations to
 
 \begin{gather*}
 	\mathbf{z}_t = \sigma(\mathbf{w}_z \odot \mathbf{h}_{t-1} + W_z \mathbf{x}_t + \mathbf{b}_z)\\
@@ -12,7 +11,7 @@ where \(\mathbf{w}_z\) and \(\mathbf{w}_r\) are now weight vectors multiplied el
 
 \[ \mathbf{\tilde{h}}_t = \tanh(\mathbf{r}_t \odot \mathbf{h}_{t-1} + W_h \mathbf{x}_t + \mathbf{b}_h) \]
 
-Since these equations change all matrix multiplications with the hidden state vector to elementwise multiplications, all interactions between elements of the hidden state are removed. Instead, each unit of the hidden state interacts only with itself. Since it features only local computations, the BRC in this form is a much more plausible model of how biological neural networks might function than either RNNs or GRUs.
+Since these equations change all matrix multiplications with the hidden state vector to elementwise multiplications, all interactions between elements of the hidden state are removed. Instead, each unit of the hidden state interacts only with itself and the input. Since it features only local computations, the BRC in this form is a much more plausible model of how biological neural networks might function than either RNNs or GRUs.
 
 
 
