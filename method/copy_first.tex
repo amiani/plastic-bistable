@@ -1,0 +1,3 @@
+\subsection*{The Copy First Task}
+
+The copy first task is a temporal prediction task that is an effective test of a model's ability to maintain long term memories. In this task, the model is presented with a sequence of \(T\) inputs drawn from a standard multivariate normal distribution. At time \(T\) the model must output the first input of the series. All other outputs are discarded. This the model is presented with a new random input at each timestep, it must learn not only to remember the first input, but also to ignore all subsequent inputs. When \(T\) is large (i.e. > 5), this task is very difficult for most recurrent models, including the GRU.

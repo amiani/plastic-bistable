@@ -1,5 +1,3 @@
-\section*{Background}
-
 \subsection*{Recurrent Neural Networks}
 
 A recurrent neural network (RNN) is a type of neural network that excels at temporal prediction tasks. Inputs are fed into the network one at a time, and the model maintains a memory in the form of a hidden state vector \(\mathbf{h}_t\) that is updated at each timestep. The model can then make predictions based on the contents of the input as well as the memory. At each timestep, the model updates the hidden state using the rule
@@ -13,21 +11,3 @@ where \(\sigma\) is a nonlinear activation function, \(W_h\), \(W_x\) and \(W_y\
 While RNNs have proven effective for many tasks, in this standard form their ability to capture long-term dependencies is limited. This is because of the so-called vanishing/exploding gradient problem, which is a result of the repeated application of the weight matrix \(W_h\) at each timestep.
 %explain vanishing gradient problem
 Various approaches have been proposed to address this problem. One approach is to use a modified update rule that avoids changing the hidden state unless necessary. This is the approach used by the Gated Recurrent Unit.
-
-\subsection*{Gated Recurrent Units}
-
-Gated Recurrent Units (GRUs) \cite{cho2014gru} are a type of RNN that preserves the gradient using a modified update rule. At each timestep the model calculates
-
-\begin{gather*}
-	\mathbf{z}_t = \sigma(W_{zh} \mathbf{h}_{t-1} + W_{zx} \mathbf{x}_t + b_z)\\
-	\mathbf{r}_t = \sigma(W_{rh} \mathbf{h}_{t-1} + W_{rx} \mathbf{x}_t + b_r)
-\end{gather*}
-known as the update and reset gate, respectively. These are then used to calculate
-\begin{gather*}
-	\mathbf{\tilde{h}}_t = \tanh(\mathbf{r}_t \odot W_{hh} \mathbf{h}_{t-1} + W_{hx} \mathbf{x}_t + b_h)\\
-	\mathbf{h}_t = \mathbf{z}_t \odot \mathbf{\tilde{h}}_t + (1 - \mathbf{z}_t) \mathbf{h}_{t-1}
-\end{gather*}
-
-\subsection*{Bistable Recurrent Cells}
-
-\subsection*{Plastic Recurrent Cells}

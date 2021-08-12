@@ -1,0 +1,15 @@
+\subsection*{Gated Recurrent Units}
+
+Gated Recurrent Units (GRUs) \cite{cho2014gru} are a type of RNN that preserve the gradient using a modified update rule. At each timestep the model calculates
+
+\begin{gather*}
+	\mathbf{z}_t = \sigma(W_{zh} \mathbf{h}_{t-1} + W_{zx} \mathbf{x}_t + \mathbf{b}_z)\\
+	\mathbf{r}_t = \sigma(W_{rh} \mathbf{h}_{t-1} + W_{rx} \mathbf{x}_t + \mathbf{b}_r)
+\end{gather*}
+known as the update and reset gate, respectively. These are then used to calculate
+\begin{gather*}
+	\mathbf{\tilde{h}}_t = \tanh(\mathbf{r}_t \odot W_{hh} \mathbf{h}_{t-1} + W_{hx} \mathbf{x}_t + \mathbf{b}_h)\\
+	\mathbf{h}_t = \mathbf{z}_t \odot \mathbf{\tilde{h}}_t + (1 - \mathbf{z}_t) \odot \mathbf{h}_{t-1}
+\end{gather*}
+
+where \(W_{zh}, W_{zx}, W_{rh}, W_{rx}, W_{hh}, W_{hx}\) are weight matrices, \(b_z, b_r, b_h\) are bias vectors, and \(\sigma\) is a nonlinear activation function. Since at each timestep \(\mathbf{h}_t\) is updated using linear interactions only, the vanishing gradient problem is much less pernicious, and the model is able to learn much longer term dependencies than the standard RNN model. 
