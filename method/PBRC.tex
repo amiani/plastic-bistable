@@ -18,4 +18,4 @@ Where A is the matrix of synaptic plasticity coefficients \(\alpha_{i,j}\) and H
 
 \subsection*{Plastic Bistable Recurrent Cells}
 
-In this paper we propose the Plastic Bistable Recurrent Cell (PBRC) model, which is a combination of the nBRC and differentiable plasticity methods. This combined model augments the nBRC model with plastic connections between its hidden state neurons. As with the plastic GRU, the 
+In this paper I propose the Plastic Bistable Recurrent Cell (PBRC) model, which is a combination of the nBRC and differentiable plasticity methods. Following the plastic GRU described above, this combined model augments the nBRC model with plastic connections between the hidden state \(\mathbf{h}_{t-1}\) and the candidate hidden state \(\mathbf{\tilde{h}}_t\) and between the candidate hidden state and the output \(\mathbf{y}_t\). The update equations are
