@@ -11,18 +11,18 @@ where \(\mathbf{w}_z\) and \(\mathbf{w}_r\) are now weight vectors multiplied el
 
 \[ \mathbf{\tilde{h}}_t = \tanh(\mathbf{r}_t \odot \mathbf{h}_{t-1} + W_h \mathbf{x}_t + \mathbf{b}_h) \]
 
-Since these equations change all matrix multiplications with the hidden state vector to elementwise multiplications, all interactions between elements of the hidden state are removed. Instead, each unit of the hidden state interacts only with itself and the input. Since it features only local computations, the BRC in this form is a much more plausible model of how biological neural networks might function than either RNNs or GRUs.
+with the update to \(\mathbf{h}_t\) being the same as the GRU. Since these equations change all matrix multiplications with the hidden state vector to elementwise multiplications, all interactions between elements of the hidden state are removed. Instead, each unit of the hidden state interacts only with itself and the input. Since it features only local computations, the BRC in this form is a much more plausible model of how biological neural networks might function than either RNNs or GRUs.
 
 
 
 
 \subsection*{Neuromodulated Bistable Recurrent Cells}
 
-\cite{vecoven2021brc} also introduced another form of the BRC that adds back in the interaction between elements of the hidden state in the equations for the update and reset gates. By relaxing the biological plausibility requirement, this modified BRC showed improved performance on a number of tasks. The update and reset gate equations are now
+Vecoven et al. \cite{vecoven2021brc} also introduced another form of the BRC that reintroduces the interaction between elements of the hidden state in the equations for the update and reset gates. By relaxing the local computation requirement, this modified BRC showed improved performance on a number of tasks. The update and reset gate equations are now
 
 \begin{gather*}
 	\mathbf{z}_t = \sigma(W_{zh} \mathbf{h}_{t-1} + W_{zx} \mathbf{x}_t + \mathbf{b}_z)\\
 	\mathbf{r}_t = \sigma(W_{rh} \mathbf{h}_{t-1} + W_{rx} \mathbf{x}_t + \mathbf{b}_r)
 \end{gather*}
 
-whereas the equations for \(\mathbf{\tilde{h}}_t\) and the update to \(\mathbf{h}_t\) are the same as the standard BRC.
+whereas the equations for \(\mathbf{\tilde{h}}_t\) and the update to \(\mathbf{h}_t\) are the same as the standard BRC. The hidden state units are modulated by the activations of the input units and hidden state units, thus the name Neuromodulated Bistable Recurrent Cell (nBRC).
