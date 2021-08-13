@@ -1,3 +1,23 @@
+\subsection*{Plastic Recurrent Cells}
+
+In this section I show the construction of a GRU cell augmented with synaptic plasticity. Although this model's performance was not compared to the PBRC, the construction of the PBRC will follow similar principles.
+As a reminder, the GRU update equations are
+
+\begin{gather*}
+	\mathbf{z}_t = \sigma(W_{zh} \mathbf{h}_{t-1} + W_{zx} \mathbf{x}_t + \mathbf{b}_z)\\
+	\mathbf{r}_t = \sigma(W_{rh} \mathbf{h}_{t-1} + W_{rx} \mathbf{x}_t + \mathbf{b}_r)\\
+	\mathbf{\tilde{h}}_t = \tanh(\mathbf{r}_t \odot W_{hh} \mathbf{h}_{t-1} + W_{hx} \mathbf{x}_t + \mathbf{b}_h)\\
+	\mathbf{h}_t = \mathbf{z}_t \odot \mathbf{\tilde{h}}_t + (1 - \mathbf{z}_t) \odot \mathbf{h}_{t-1}
+\end{gather*}
+
+Plasticity can be added to any connection of a neural network, and we see from these equations that the GRU boasts multiple types of connections that have varying functions. Although we could add plasticity to every connection, this would mean doubling the model's parameter count and come at a huge computational cost. Intuitively, the GRU's connections between previous hidden state \(\mathbf{h}_{t-1}\) and the candidate hidden state \(\mathbf{\tilde{h}}_t\) lend themselves most readily to plasticity as they already integrate the past memory state into the present. With this in mind, the candidate hidden state update becomes
+
+\[ \mathbf{\tilde{h}}_t = \tanh(\mathbf{r}_t \odot (W_{hh} + A \odot H) \mathbf{h}_{t-1} + W_{hx} \mathbf{x}_t + \mathbf{b}_h) \]
+
+Where A is the matrix of synaptic plasticity coefficients \(\alpha_{i,j}\) and H is the matrix of plastic weights \(H_{i,j}\), calculated exactly as before.
+
 \subsection*{Plastic Bistable Recurrent Cells}
 
-In this paper we propose the Plastic Bistable Recurrent Cell (PBRC) model, which is a combination of the nBRC and diffentiable plasticity methods.
+In this paper we propose the Plastic Bistable Recurrent Cell (PBRC) model, which is a combination of the nBRC and differentiable plasticity methods. This combined model augments the nBRC model with plastic connections between its hidden state neurons. As with the plastic GRU, the 
+
+All models and experiments were implemented in python using the JAX\cite{jax2018github} and Flax\cite{flax2020github} libraries, and can be found at \href{https://github.com/amiani/plasticgru}{github.com/amiani/plasticgru}.
