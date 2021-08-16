@@ -13,3 +13,4 @@ Where \(\otimes\) is the vector outer product. Each synapse's plastic weight is 
 \[ x_j(t) = \sigma \left( \sum_{i\in inputs} [ w_{i,j}x_i(t-1) + \alpha_{i,j}H_{i,j}(t)x_i(t-1) ] \right) \]
 
 That the plasticity parameter \(\alpha_{i,j}\) is specific to each neuron means that the model is able during training to drive an \(\alpha_{i,j}\) to 0 and therefore recover the standard learning rule for that synapse only. This allows for much flexibility in the model as it can pick exactly where and how much plasticity to use.
+Plastic models have been shown to learn to memorize high-dimensional inputs and then reconstruct them after a short period of time.

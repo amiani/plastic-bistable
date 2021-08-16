@@ -22,7 +22,7 @@ Vecoven et al. \cite{vecoven2021brc} also introduced another form of the BRC tha
 
 \begin{gather*}
 	\mathbf{z}_t = \sigma(W_{zh} \mathbf{h}_{t-1} + W_{zx} \mathbf{x}_t + \mathbf{b}_z)\\
-	\mathbf{r}_t = \sigma(W_{rh} \mathbf{h}_{t-1} + W_{rx} \mathbf{x}_t + \mathbf{b}_r)
+	\mathbf{r}_t = 1 + \tanh (W_{rh} \mathbf{h}_{t-1} + W_{rx} \mathbf{x}_t + \mathbf{b}_r)
 \end{gather*}
 
 whereas the equations for \(\mathbf{\tilde{h}}_t\) and the update to \(\mathbf{h}_t\) are the same as the standard BRC. The hidden state units are modulated by the activations of the input units and hidden state units, thus the name Neuromodulated Bistable Recurrent Cell (nBRC). This makes the nBRC very similar to the standard GRU, but crucially the equation for the candidate hidden state \(\mathbf{\tilde{h}}_t\) retains the elementwise multiplication of the reset gate and the previous hidden state. This difference is important because it allows the neurons of the nBRC (and BRC) to exhibit bistable dynamics\cite{vecoven2021brc}, which is crucial for their formation of long term memories.
