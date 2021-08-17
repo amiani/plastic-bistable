@@ -19,6 +19,7 @@ Where A is the matrix of synaptic plasticity coefficients \(\alpha_{i,j}\) and H
 \subsection*{Plastic Bistable Recurrent Cells}
 
 In this report I propose the Plastic Bistable Recurrent Cell (PBRC) model, which is a combination of the nBRC and differentiable plasticity methods. Following the plastic GRU described above, this combined model augments the nBRC model with plastic connections between the hidden state \(\mathbf{h}_{t-1}\) and the candidate hidden state \(\mathbf{\tilde{h}}_t\) and between the candidate hidden state and the output \(\mathbf{y}_t\). Thes two differences between the PBRC and the equations for the Plastic Recurrent Cells given above are that the activation function for the reset gate \(\mathbf{r}_t\) is now \(1 + \tanh(x)\) as opposed to \(\sigma(x)\), and the candidate hidden state \(\mathbf{\tilde{h}}_t\) is now calculated without a matrix multiplication on the previous hidden state term.
+\clearpage
 The update equations of the final PBRC model are
 
 \begin{gather*}

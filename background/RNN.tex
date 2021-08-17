@@ -8,8 +8,6 @@ The output of the model can then be computed as
 \[ \mathbf{y}_t = \sigma(W_y \mathbf{h}_t + b_y) \]
 where \(\sigma\) is a nonlinear activation function, \(W_h\), \(W_x\) and \(W_y\) are weight matrices learned by the model, \(b_h\) and \(b_y\) are learned bias vectors and \(\mathbf{x}_t\) is the input at time \(t\). These weight matrices and bias vectors are typically learned using gradient descent.
 
-%include diagram
-
-While RNNs have proven effective for many tasks, in this standard form their ability to capture long-term dependencies is limited. This is because of the so-called vanishing/exploding gradient problem, which is a result of the repeated application of the weight matrix \(W_h\) at each timestep.
-%explain vanishing gradient problem
+While standard RNNs have been shown to excel at problems that require memory, they suffer from an issue in their training dynamics.
+Neural networks are typically trained using the backpropagation algorithm, which first calculates a scalar loss function (e.g. mean squared error) of some training data in the form of input-output examples, then calculates the gradient of the loss with respect to the parameters, and updates the parameters in the direction of the gradient. This is applicable to RNNs, but leads to a problem whereby the parameter gradient either shrinks to 0 or grows to infinity as the sequence length grows. This is known as the vanishing/exploding gradient problem. This problem limits the sequence length that standard RNNs can be trained on, and thus their ability to learn dependencies that are distant in time.
 Various approaches have been proposed to address this problem. One approach is to use a modified update rule that avoids changing the hidden state unless necessary. This is the approach used by the Gated Recurrent Unit.
